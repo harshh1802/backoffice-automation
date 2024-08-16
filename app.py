@@ -3,7 +3,7 @@ import pandas as pd
 
 # Function to process the CSV and generate the new file
 def process_csv(uploaded_file):
-    df = pd.read_csv('mtm.csv')
+    df = pd.read_csv(uploaded_file)
 
     # Step 1: Categorize the instrument types
     df['instrument_type'] = df['SCRIPID'].apply(lambda x: 'Future' if x.startswith('FUT') else ('Cash' if x.startswith('INE') else None))
