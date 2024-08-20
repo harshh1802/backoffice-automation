@@ -6,7 +6,7 @@ def process_csv(uploaded_file):
     df = pd.read_csv(uploaded_file)
 
     # Step 1: Categorize the instrument types
-    df['instrument_type'] = df['SCRIPID'].apply(lambda x: 'Future' if x.startswith('FUT') else ('Cash' if x.startswith('INE') else None))
+    df['instrument_type'] = df['SCRIPID'].apply(lambda x: 'Future' if x.startswith('FUT') else ('Option' if x.startswith('OPT') else 'Cash'))
 
     # Step 2: Filter for Future and Cash types
     df2 = df[df['instrument_type'].isin(['Future', 'Cash'])]
