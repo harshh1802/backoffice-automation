@@ -99,4 +99,4 @@ if uploaded_files:
 
     # Add download button for the final CSV
     csv = df.round(2).to_csv(index=False)
-    st.download_button(label="Download Final CSV", data=csv, file_name='Test_Jobbr_summar_2.csv', mime='text/csv')
+    st.download_button(label="Download Final CSV", data=csv, file_name='Final.csv', mime='text/csv')
