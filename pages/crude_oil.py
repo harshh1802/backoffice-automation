@@ -20,7 +20,7 @@ if uploaded_file is not None:
     TraderID = 10548
     ClientTrCode = 'BRD206731'
     CleintCode = 'R144'
-    SeriesCode = 'FUTSTKMRFAug 29 20240.00'
+    SeriesCode = st.text_input('Series Code')
     OrderNo = 1
     TradeNo = 1
     TradeTime = 1
