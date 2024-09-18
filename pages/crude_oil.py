@@ -4,6 +4,8 @@ import pandas as pd
 # Streamlit App
 st.title("Crude Oil Trade Data Processor")
 
+scode = st.text_input('Series Code')
+
 # File uploader for Excel file
 uploaded_file = st.file_uploader("Choose an Excel file", type="xlsx")
 
@@ -20,7 +22,7 @@ if uploaded_file is not None:
     TraderID = 10548
     ClientTrCode = 'BRD206731'
     CleintCode = 'R144'
-    SeriesCode = st.text_input('Series Code')
+    SeriesCode = scode
     OrderNo = 1
     TradeNo = 1
     TradeTime = 1
