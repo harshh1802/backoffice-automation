@@ -32,7 +32,7 @@ if submit_button:
     })
     
     # Append the new data to the existing dataframe
-    df = df.concat(new_data, ignore_index=True)
+    df = df._append(new_data, ignore_index=True)
     
     # Save the updated dataframe back to the CSV
     df.to_csv(csv_file_path, index=False)
