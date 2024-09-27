@@ -1,8 +1,25 @@
 import streamlit as st
 import pandas as pd
 
+# Define the path to your CSV file
+csv_file_path = 'id.csv'
+
+# Function to get ClientCode from ClientID
+def get_client_code(client_id):
+    # Load the CSV into a dataframe
+    df = pd.read_csv(csv_file_path, index_col = False)
+    
+    # Find the corresponding ClientCode for the given ClientID
+    result = df.loc[df['clientid'] == client_id, 'clientcode']
+    
+    # If a match is found, return the ClientCode, otherwise return a message
+    if not result.empty:
+        return result.values[0]
+    else:
+        return "ClientID not found."
+
 # Streamlit App
-st.title("Jainam Trade Data Processor")
+st.title("Jainam BSE Trade Data Processor")
 
 scode = st.text_input('Series Code')
 
@@ -16,9 +33,9 @@ if uploaded_file is not None:
 
 
     # Fixed parameters as provided in your code
-    TraderID = 2001
-    ClientTrCode = 'BRD206731'
-    CleintCode = 'ITC2067'
+    # TraderID = 2001
+    # ClientTrCode = 'BRD206731'
+    # CleintCode = 'ITC2067'
     SeriesCode = scode
     OrderNo = 1
     TradeNo = 1
@@ -32,9 +49,9 @@ if uploaded_file is not None:
         for index, row in main_df.iterrows():
             # Buy Entry
             secondary_data.append({
-            'TraderID': TraderID,
-            'ClientTrCode': ClientTrCode,
-            'ClientCode': CleintCode,
+            'TraderID': row['MemberID'],
+            'ClientTrCode': row['UserID'],
+            'ClientCode': get_client_code(row['UserID']),
             'SeriesCode': SeriesCode,
             'Qty': row['Quantity'],
             'MktRate': row['Price'] * (-1) if row['Side'] == 'Sell' else row['Price'],
