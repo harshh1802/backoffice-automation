@@ -92,7 +92,7 @@ with tab1:
         df['P&L'] = df.apply(lambda x: pl(x['Code'], stock), axis=1)
         df['Deposit'] = df.apply(lambda x: deposit(x['Code'], bs), axis=1)
         df['Ledger'] = df.apply(lambda x: ledger(x['Code'], margin_summary), axis=1)
-        df['Gross Amt'] = df['EQ-Holding'] + df['Ledger']
+        df['Gross Amt'] = df['EQ-Holding'] + df['Ledger'] + df['FO-Holding'] + df['OPT-Holding']
         df['Int'] = df.apply(lambda x: interest(x['Code'], int_summary), axis=1)
         df['Int Rate %'] = df.apply(lambda x: interest_rate(x['Code'], int_summary), axis=1)
         df['Net Amount'] = df['Gross Amt'] - df['Int']
